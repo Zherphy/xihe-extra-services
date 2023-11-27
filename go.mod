@@ -7,7 +7,7 @@ require (
 	github.com/opensourceways/kafka-lib v0.0.0-20231114071554-b2af9944cf3a
 	github.com/opensourceways/server-common-lib v0.0.0-20231027024402-f55c66e6699c
 	github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231024113605-2eccc6879a7b
-	github.com/opensourceways/xihe-server v0.0.0-20231025092410-72c600f28c69
+	github.com/opensourceways/xihe-server v0.0.0-20231110111100-d7fecdbfbab5
 	github.com/panjf2000/ants/v2 v2.8.2
 	github.com/sirupsen/logrus v1.9.3
 	gorm.io/gorm v1.25.4
@@ -44,7 +44,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.4 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/huaweicloud/huaweicloud-sdk-go-obs v3.23.9+incompatible // indirect
-	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.11 // indirect
+	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.69 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgx/v5 v5.5.0 // indirect
@@ -70,6 +70,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.18 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	github.com/tjfoc/gmsm v1.4.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/xanzy/go-gitlab v0.93.2 // indirect
