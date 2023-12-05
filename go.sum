@@ -79,6 +79,8 @@ github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/rVNCu3HqELle0jiPLLBs70cWOduZpkS1E78=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=
 github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815/go.mod h1:WwZ+bS3ebgob9U8Nd0kOddGdZWjyMGR8Wziv+TBNwSE=
+github.com/drizzlezyk/xihe-grpc-protocol v0.0.0-20231127062917-ba32796ecf19 h1:Q7tfnytHEjJZ+DPvwKt/L2JIQgpKJZR3GwYY22O3iXo=
+github.com/drizzlezyk/xihe-grpc-protocol v0.0.0-20231127062917-ba32796ecf19/go.mod h1:H3p8hwPJ0vUAES4mo05qzVOLORQac369cqZUKg+LuV8=
 github.com/eapache/go-resiliency v1.2.0/go.mod h1:kFI+JgMyC7bLPUVY133qvEBtVayf5mFgVsvEsIPBvNs=
 github.com/eapache/go-resiliency v1.4.0 h1:3OK9bWpPk5q6pbFAaYSEwD9CLUSHG8bnZuqX2yMt3B0=
 github.com/eapache/go-resiliency v1.4.0/go.mod h1:5yPzW0MIvSe0JDsv0v+DvcjEv2FyD6iZYSs1ZI+iQho=
@@ -351,12 +353,14 @@ github.com/opensourceways/redis-lib v0.0.0-20231018083224-85bc8e32c7c0 h1:x5UpMj
 github.com/opensourceways/redis-lib v0.0.0-20231018083224-85bc8e32c7c0/go.mod h1:KeuoqWTYtmtDy4tHYkHt2xDSPtOi1WXR1uL8EwTTG6g=
 github.com/opensourceways/server-common-lib v0.0.0-20231027024402-f55c66e6699c h1:atmkPztYx7LFXhwnjrQ6IvgZXmzqFREYzpYA4qfsG9I=
 github.com/opensourceways/server-common-lib v0.0.0-20231027024402-f55c66e6699c/go.mod h1:1iVJ+C3L9e0GJMUhGfbegH4CecnALntzfTW29GzBGUk=
+github.com/opensourceways/xihe-aicc-finetune v0.0.0-20230920034014-a8ff56b9eb1a h1:r5T/zjPYUcXP26jK9kGYpAbN+etxVz+1p0dJXKxQXdI=
+github.com/opensourceways/xihe-aicc-finetune v0.0.0-20230920034014-a8ff56b9eb1a/go.mod h1:KOPZySmbVjgsnqgwCy9hZeDpwakCGDVmOF1o2lU2+Ko=
 github.com/opensourceways/xihe-finetune v0.0.0-20231025112302-d48154d5ce22 h1:Wv7If9Mmndx3dIx1UUJS/ggpjKDyLRlki2nB6WbCLok=
 github.com/opensourceways/xihe-finetune v0.0.0-20231025112302-d48154d5ce22/go.mod h1:VYpD1Hx3gcIT3Oqw/r+Fqzgz6wLr01yS2Y0PvVAZ3uo=
-github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231024113605-2eccc6879a7b h1:b+8ATNcgNUgcSaZoISyxrhBfl6hx49BSS9lc3cXyfqU=
-github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231024113605-2eccc6879a7b/go.mod h1:H3p8hwPJ0vUAES4mo05qzVOLORQac369cqZUKg+LuV8=
-github.com/opensourceways/xihe-server v0.0.0-20231110111100-d7fecdbfbab5 h1:BojaXwQY4DZuBNQg8q9tvH/VpwrwDoYRqid3phRsJcw=
-github.com/opensourceways/xihe-server v0.0.0-20231110111100-d7fecdbfbab5/go.mod h1:pbqG1ePD3jzhJTeYZl+KV+1F4HD2OAzURgDJfQCFb0U=
+github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d h1:jDfqKCEMvm0DfeYUolMMFtftSlXAtw8+RtsfQttC984=
+github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d/go.mod h1:H3p8hwPJ0vUAES4mo05qzVOLORQac369cqZUKg+LuV8=
+github.com/opensourceways/xihe-server v0.0.0-20231130022022-8a2c7a933abb h1:FN2748y8TEvV+P78+dFFGC54+2QNx6cN3bDMrjYSsYE=
+github.com/opensourceways/xihe-server v0.0.0-20231130022022-8a2c7a933abb/go.mod h1:1UwDI/JmeR/O6R9oV5x/g79EenHygsquFwt4b4oLEcU=
 github.com/opensourceways/xihe-training-center v0.0.0-20231025094431-5264247aed37 h1:BtuQhXKv/EdH36nm26fUrCQnfzKw7UqbPNPZmBS+b70=
 github.com/opensourceways/xihe-training-center v0.0.0-20231025094431-5264247aed37/go.mod h1:INt/SP760CQIuTT/tJfU+bFKig2ISyY6a1DRVN6407o=
 github.com/panjf2000/ants/v2 v2.8.2 h1:D1wfANttg8uXhC9149gRt1PDQ+dLVFjNXkCEycMcvQQ=
