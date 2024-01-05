@@ -1,6 +1,5 @@
 FROM openeuler/openeuler:23.03 as BUILDER
-RUN sed -i "s|repo.openeuler.org|mirrors.pku.edu.cn/openeuler|g" /etc/yum.repos.d/openEuler.repo && \ 
-    dnf update -y && \
+RUN dnf update -y && \
     dnf install -y golang && \
     go env -w GOPROXY=https://goproxy.cn,direct
 
@@ -16,8 +15,7 @@ RUN cd /go/src/github.com/opensourceways/xihe-extra-services/internal-server && 
 
 # copy binary config and utils
 FROM openeuler/openeuler:22.03
-RUN sed -i "s|repo.openeuler.org|mirrors.pku.edu.cn/openeuler|g" /etc/yum.repos.d/openEuler.repo && \ 
-    dnf -y update && \
+RUN dnf -y update && \
     dnf in -y shadow && \
     groupadd -g 5000 mindspore && \
     useradd -u 5000 -g mindspore -s /bin/bash -m mindspore
