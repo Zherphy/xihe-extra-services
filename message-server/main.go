@@ -20,9 +20,13 @@ import (
 	aiccmq "github.com/opensourceways/xihe-server/aiccfinetune/messagequeue"
 	"github.com/opensourceways/xihe-server/app"
 	bigmodelmq "github.com/opensourceways/xihe-server/bigmodel/messagequeue"
+	cloudapp "github.com/opensourceways/xihe-server/cloud/app"
+	"github.com/opensourceways/xihe-server/cloud/infrastructure/cloudimpl"
+	cloudrepo "github.com/opensourceways/xihe-server/cloud/infrastructure/repositoryimpl"
 	"github.com/opensourceways/xihe-server/common/infrastructure/kafka"
 	"github.com/opensourceways/xihe-server/common/infrastructure/pgsql"
 	"github.com/opensourceways/xihe-server/infrastructure/finetuneimpl"
+	"github.com/opensourceways/xihe-server/infrastructure/inferenceimpl"
 	"github.com/opensourceways/xihe-server/infrastructure/messages"
 	"github.com/opensourceways/xihe-server/infrastructure/mongodb"
 	"github.com/opensourceways/xihe-server/infrastructure/repositories"
@@ -257,6 +261,7 @@ func aiccFinetuneSubscribesMessage(cfg *configuration) error {
 
 func newHandler(cfg *configuration, log *logrus.Entry) *handler {
 	collections := &cfg.Mongodb.Collections
+	userRepo := userrepo.NewUserRepo(mongodb.NewCollection(collections.User))
 
 	h := &handler{
 		log:      log,
@@ -282,6 +287,20 @@ func newHandler(cfg *configuration, log *logrus.Entry) *handler {
 
 		async: asyncapp.NewAsyncMessageService(
 			asyncrepo.NewAsyncTaskRepo(&cfg.Postgresql.asyncconf),
+		),
+
+		inference: app.NewInferenceMessageService(
+			repositories.NewInferenceRepository(
+				mongodb.NewInferenceMapper(collections.Inference),
+			),
+			userRepo,
+			inferenceimpl.NewInference(&cfg.Inference),
+		),
+
+		cloud: cloudapp.NewCloudMessageService(
+			cloudrepo.NewPodRepo(&cfg.Postgresql.cloudconf),
+			cloudimpl.NewCloud(&cfg.Cloud.Config),
+			int64(cfg.Cloud.SurvivalTime),
 		),
 	}
 

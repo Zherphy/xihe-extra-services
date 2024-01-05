@@ -8,8 +8,10 @@ import (
 	"github.com/opensourceways/community-robot-lib/logrusutil"
 	liboptions "github.com/opensourceways/community-robot-lib/options"
 	"github.com/opensourceways/xihe-grpc-protocol/grpc/aiccfinetune"
+	"github.com/opensourceways/xihe-grpc-protocol/grpc/cloud"
 	"github.com/opensourceways/xihe-grpc-protocol/grpc/competition"
 	"github.com/opensourceways/xihe-grpc-protocol/grpc/finetune"
+	"github.com/opensourceways/xihe-grpc-protocol/grpc/inference"
 	"github.com/opensourceways/xihe-grpc-protocol/grpc/server"
 	"github.com/opensourceways/xihe-grpc-protocol/grpc/training"
 	"github.com/sirupsen/logrus"
@@ -18,6 +20,9 @@ import (
 	aiccdomain "github.com/opensourceways/xihe-server/aiccfinetune/domain"
 	aiccrepo "github.com/opensourceways/xihe-server/aiccfinetune/infrastructure/repositoryimpl"
 	"github.com/opensourceways/xihe-server/app"
+	cloudapp "github.com/opensourceways/xihe-server/cloud/app"
+	clouddomain "github.com/opensourceways/xihe-server/cloud/domain"
+	cloudrepo "github.com/opensourceways/xihe-server/cloud/infrastructure/repositoryimpl"
 	"github.com/opensourceways/xihe-server/common/infrastructure/pgsql"
 	competitionapp "github.com/opensourceways/xihe-server/competition/app"
 	competitiondomain "github.com/opensourceways/xihe-server/competition/domain"
@@ -121,6 +126,18 @@ func main() {
 		),
 	)
 
+	// inference
+	inferenceService := app.NewInferenceInternalService(
+		repositories.NewInferenceRepository(
+			mongodb.NewInferenceMapper(collections.Inference),
+		),
+	)
+
+	// cloud
+	cloudService := cloudapp.NewCloudInternalService(
+		cloudrepo.NewPodRepo(&cfg.Postgresql.Cloud),
+	)
+
 	// competition
 	competitionService := competitionapp.NewCompetitionInternalService(
 		competitionrepo.NewWorkRepo(
@@ -145,6 +162,9 @@ func main() {
 	s.RegisterTrainingServer(trainingServer{train})
 	s.RegisterCompetitionServer(competitionServer{competitionService})
 	s.RegisterAICCFinetuneServer(aiccFinetuneServer{aiccfinetuneService})
+
+	s.RegisterInferenceServer(inferenceServer{inferenceService})
+	s.RegisterCloudServer(cloudServer{cloudService})
 
 	if err := s.Run(strconv.Itoa(o.service.Port)); err != nil {
 		log.Errorf("start server failed, err:%s", err.Error())
@@ -202,6 +222,54 @@ func (t finetuneServer) SetFinetuneInfo(index *finetune.FinetuneIndex, v *finetu
 	)
 }
 
+// inference
+type inferenceServer struct {
+	service app.InferenceInternalService
+}
+
+func (t inferenceServer) SetInferenceInfo(index *inference.InferenceIndex, v *inference.InferenceInfo) error {
+	u, err := domain.NewAccount(index.User)
+	if err != nil {
+		return nil
+	}
+
+	return t.service.UpdateDetail(
+		&domain.InferenceIndex{
+			Project: domain.ResourceIndex{
+				Owner: u,
+				Id:    index.ProjectId,
+			},
+			Id:         index.Id,
+			LastCommit: index.LastCommit,
+		},
+		&app.InferenceDetail{
+			Error:     v.Error,
+			AccessURL: v.AccessURL,
+		},
+	)
+}
+
+// cloud
+type cloudServer struct {
+	service cloudapp.CloudInternalService
+}
+
+func (t cloudServer) SetPodInfo(c *cloud.CloudPod, info *cloud.PodInfo) (err error) {
+	cmd := new(cloudapp.UpdatePodInternalCmd)
+
+	cmd.PodId = c.Id
+
+	if cmd.PodError, err = clouddomain.NewPodError(info.Error); err != nil {
+		return
+	}
+
+	if cmd.AccessURL, err = clouddomain.NewAccessURL(info.AccessURL); err != nil {
+		return
+	}
+
+	return t.service.UpdateInfo(cmd)
+}
+
 // competition
 type competitionServer struct {
 	service competitionapp.CompetitionInternalService
@@ -215,7 +283,7 @@ func (t competitionServer) SetSubmissionInfo(
 		return err
 	}
 
-	return t.service.UpdateSubmission(
+	err = t.service.UpdateSubmission(
 		&competitionapp.CompetitionSubmissionUpdateCmd{
 			Index:  competitiondomain.NewWorkIndex(cid, v.PlayerId),
 			Phase:  phase,
@@ -224,9 +292,10 @@ func (t competitionServer) SetSubmissionInfo(
 			Score:  v.Score,
 		},
 	)
+	return err
 }
 
-// competition
+// aiccfinetune
 type aiccFinetuneServer struct {
 	service aiccapp.AICCFinetuneInternalService
 }

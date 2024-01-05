@@ -7,7 +7,7 @@ require (
 	github.com/opensourceways/kafka-lib v0.0.0-20231114071554-b2af9944cf3a
 	github.com/opensourceways/server-common-lib v0.0.0-20231027024402-f55c66e6699c
 	github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d
-	github.com/opensourceways/xihe-server v0.0.0-20231228035112-ce1ff1d273da
+	github.com/opensourceways/xihe-server v0.0.0-20240105022703-0e278f0aa00b
 	github.com/panjf2000/ants/v2 v2.8.2
 	github.com/sirupsen/logrus v1.9.3
 	gorm.io/gorm v1.25.5
@@ -44,7 +44,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.5 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/huaweicloud/huaweicloud-sdk-go-obs v3.23.9+incompatible // indirect
-	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.75 // indirect
+	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.76 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20231201235250-de7065d80cb9 // indirect
 	github.com/jackc/pgx/v5 v5.5.1 // indirect
@@ -65,8 +65,9 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/opensourceways/redis-lib v0.0.0-20231018083224-85bc8e32c7c0 // indirect
-	github.com/opensourceways/xihe-aicc-finetune v0.0.0-20231227072808-fc544f27f698 // indirect
+	github.com/opensourceways/xihe-aicc-finetune v0.0.0-20231228122500-0440d3fb56e1 // indirect
 	github.com/opensourceways/xihe-finetune v0.0.0-20231114131740-c5f4e59f7e43 // indirect
+	github.com/opensourceways/xihe-inference-evaluate v0.0.0-20231108072601-f391eb5f0f6a // indirect
 	github.com/opensourceways/xihe-training-center v0.0.0-20231025094431-5264247aed37 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.1 // indirect
 	github.com/pierrec/lz4/v4 v4.1.19 // indirect
@@ -81,12 +82,12 @@ require (
 	github.com/xdg-go/stringprep v1.0.4 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20201027041543-1326539a0a0a // indirect
 	go.mongodb.org/mongo-driver v1.13.1 // indirect
-	golang.org/x/arch v0.6.0 // indirect
+	golang.org/x/arch v0.7.0 // indirect
 	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/oauth2 v0.15.0 // indirect
-	golang.org/x/sync v0.5.0 // indirect
-	golang.org/x/sys v0.15.0 // indirect
+	golang.org/x/sync v0.6.0 // indirect
+	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
