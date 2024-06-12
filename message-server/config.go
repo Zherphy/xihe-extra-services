@@ -101,14 +101,19 @@ func (cfg *configuration) getFinetuneConfig() finetuneimpl.Config {
 
 // cloud
 type cloudConfig struct {
-	SurvivalTime int `json:"survival_time"`
+	SurvivalTimeCpu    int `json:"survival_time_cpu"`
+	SurvivalTimeAscend int `json:"survival_time_ascend"`
 
 	cloudimpl.Config
 }
 
 func (cfg *cloudConfig) SetDefault() {
-	if cfg.SurvivalTime <= 0 {
-		cfg.SurvivalTime = 5 * 3600
+	if cfg.SurvivalTimeCpu <= 0 {
+		cfg.SurvivalTimeCpu = 5 * 3600
+	}
+
+	if cfg.SurvivalTimeAscend <= 0 {
+		cfg.SurvivalTimeAscend = 5 * 3600
 	}
 
 	common.SetDefault(&cfg.Config)

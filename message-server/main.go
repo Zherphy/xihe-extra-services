@@ -300,7 +300,8 @@ func newHandler(cfg *configuration, log *logrus.Entry) *handler {
 		cloud: cloudapp.NewCloudMessageService(
 			cloudrepo.NewPodRepo(&cfg.Postgresql.cloudconf),
 			cloudimpl.NewCloud(&cfg.Cloud.Config),
-			int64(cfg.Cloud.SurvivalTime),
+			int64(cfg.Cloud.SurvivalTimeCpu),
+			int64(cfg.Cloud.SurvivalTimeAscend),
 		),
 	}
 
