@@ -7,7 +7,7 @@ require (
 	github.com/opensourceways/kafka-lib v0.0.0-20231114071554-b2af9944cf3a
 	github.com/opensourceways/server-common-lib v0.0.0-20231027024402-f55c66e6699c
 	github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d
-	github.com/opensourceways/xihe-server v0.0.0-20240612020634-c28e207c6f30
+	github.com/opensourceways/xihe-server v0.0.0-20240618130604-ddd24a8fd3c3
 	github.com/panjf2000/ants/v2 v2.8.2
 	github.com/sirupsen/logrus v1.9.3
 	gorm.io/gorm v1.25.5

@@ -1044,8 +1044,8 @@ github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d 
 github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d/go.mod h1:H3p8hwPJ0vUAES4mo05qzVOLORQac369cqZUKg+LuV8=
 github.com/opensourceways/xihe-inference-evaluate v0.0.0-20240520091334-5f9eb831c1a4 h1:mGtRbR54+p0RMC6KzFNiU4tdTJlHvvNi0XkTWZCVFts=
 github.com/opensourceways/xihe-inference-evaluate v0.0.0-20240520091334-5f9eb831c1a4/go.mod h1:MjZsCwkgtmusLfDegxA4ZR/2/2S3rZ6IRlZvxBZsE74=
-github.com/opensourceways/xihe-server v0.0.0-20240612020634-c28e207c6f30 h1:m4N/VfRBs9zhgXP7Dpa/cjKbwOy+KMdI4go8KOe3MLI=
-github.com/opensourceways/xihe-server v0.0.0-20240612020634-c28e207c6f30/go.mod h1:LdT6fjKpFfPBwJGuy0Hd17U+4BKoy9ylhIATR3hn64s=
+github.com/opensourceways/xihe-server v0.0.0-20240618130604-ddd24a8fd3c3 h1:XaJTZCrG3Xzn4EzTlfa+mEz067fzxJKyxW2OdjKTl6U=
+github.com/opensourceways/xihe-server v0.0.0-20240618130604-ddd24a8fd3c3/go.mod h1:LdT6fjKpFfPBwJGuy0Hd17U+4BKoy9ylhIATR3hn64s=
 github.com/opensourceways/xihe-training-center v0.0.0-20231025094431-5264247aed37 h1:BtuQhXKv/EdH36nm26fUrCQnfzKw7UqbPNPZmBS+b70=
 github.com/opensourceways/xihe-training-center v0.0.0-20231025094431-5264247aed37/go.mod h1:INt/SP760CQIuTT/tJfU+bFKig2ISyY6a1DRVN6407o=
 github.com/panjf2000/ants/v2 v2.8.2 h1:D1wfANttg8uXhC9149gRt1PDQ+dLVFjNXkCEycMcvQQ=
