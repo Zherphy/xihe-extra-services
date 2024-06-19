@@ -22,6 +22,7 @@ import (
 	bigmodelmq "github.com/opensourceways/xihe-server/bigmodel/messagequeue"
 	cloudapp "github.com/opensourceways/xihe-server/cloud/app"
 	"github.com/opensourceways/xihe-server/cloud/infrastructure/cloudimpl"
+	"github.com/opensourceways/xihe-server/cloud/infrastructure/messageadapter"
 	cloudrepo "github.com/opensourceways/xihe-server/cloud/infrastructure/repositoryimpl"
 	"github.com/opensourceways/xihe-server/common/infrastructure/kafka"
 	"github.com/opensourceways/xihe-server/common/infrastructure/pgsql"
@@ -302,6 +303,7 @@ func newHandler(cfg *configuration, log *logrus.Entry) *handler {
 			cloudimpl.NewCloud(&cfg.Cloud.Config),
 			int64(cfg.Cloud.SurvivalTimeCpu),
 			int64(cfg.Cloud.SurvivalTimeAscend),
+			messageadapter.NewCloudRecordEventPublisher(&cfg.MQTopics.Topics, kafka.PublisherAdapter()),
 		),
 	}
 

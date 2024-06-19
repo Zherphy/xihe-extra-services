@@ -260,9 +260,7 @@ func (h *handler) HandleEventExtendInferenceSurvivalTime(info *message.Inference
 func (h *handler) HandleEventPodSubscribe(info *cloudtypes.PodInfo) error {
 	return h.do(func(bool) error {
 		if err := h.cloud.CreatePodInstance(info); err != nil {
-			if err != nil {
-				h.log.Error(err)
-			}
+			h.log.Error(err)
 		}
 
 		return nil
