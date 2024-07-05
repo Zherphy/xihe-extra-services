@@ -6,8 +6,8 @@ require (
 	github.com/opensourceways/community-robot-lib v0.0.0-20231106030104-fefc5fa67771
 	github.com/opensourceways/kafka-lib v0.0.0-20231114071554-b2af9944cf3a
 	github.com/opensourceways/server-common-lib v0.0.0-20231027024402-f55c66e6699c
-	github.com/opensourceways/xihe-grpc-protocol v0.0.0-20231204090636-ed34b5b0415d
-	github.com/opensourceways/xihe-server v0.0.0-20240619065944-f66a3d622c96
+	github.com/opensourceways/xihe-grpc-protocol v0.0.0-20240704031314-261f5e8542e2
+	github.com/opensourceways/xihe-server v0.0.0-20240705093120-c7db4d38be96
 	github.com/panjf2000/ants/v2 v2.8.2
 	github.com/sirupsen/logrus v1.9.3
 	gorm.io/gorm v1.25.5
@@ -47,7 +47,7 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/hashicorp/go-retryablehttp v0.7.5 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.7 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/huaweicloud/huaweicloud-sdk-go-obs v3.23.9+incompatible // indirect
 	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.76 // indirect
@@ -75,7 +75,7 @@ require (
 	github.com/opensourceways/redis-lib v0.0.0-20231018083224-85bc8e32c7c0 // indirect
 	github.com/opensourceways/xihe-aicc-finetune v0.0.0-20231228122500-0440d3fb56e1 // indirect
 	github.com/opensourceways/xihe-finetune v0.0.0-20231114131740-c5f4e59f7e43 // indirect
-	github.com/opensourceways/xihe-inference-evaluate v0.0.0-20240520091334-5f9eb831c1a4 // indirect
+	github.com/opensourceways/xihe-inference-evaluate v0.0.0-20240705024926-a7b5c043ceea // indirect
 	github.com/opensourceways/xihe-training-center v0.0.0-20231025094431-5264247aed37 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.2 // indirect
 	github.com/pierrec/lz4/v4 v4.1.19 // indirect

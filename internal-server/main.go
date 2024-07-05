@@ -136,6 +136,7 @@ func main() {
 	// cloud
 	cloudService := cloudapp.NewCloudInternalService(
 		cloudrepo.NewPodRepo(&cfg.Postgresql.Cloud),
+		cfg.CloudTerminatationWait,
 	)
 
 	// competition
@@ -268,6 +269,13 @@ func (t cloudServer) SetPodInfo(c *cloud.CloudPod, info *cloud.PodInfo) (err err
 	}
 
 	return t.service.UpdateInfo(cmd)
+}
+
+func (t cloudServer) ReleasePod(id string) (err error) {
+	cmd := new(cloudapp.ReleaseInternalCmd)
+	cmd.PodId = id
+
+	return t.service.Release(cmd)
 }
 
 // competition

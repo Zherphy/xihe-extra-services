@@ -18,9 +18,10 @@ func loadConfig(path string, cfg *configuration) error {
 }
 
 type configuration struct {
-	Mongodb    config.Mongodb          `json:"mongodb"      required:"true"`
-	Postgresql config.PostgresqlConfig `json:"postgresql"   required:"true"`
-	Domain     domain.Config           `json:"domain"       required:"true"`
+	Mongodb                config.Mongodb          `json:"mongodb"                  required:"true"`
+	Postgresql             config.PostgresqlConfig `json:"postgresql"               required:"true"`
+	Domain                 domain.Config           `json:"domain"                   required:"true"`
+	CloudTerminatationWait int64                   `json:"cloud_terminatation_wait" require:"true"`
 }
 
 func (cfg *configuration) ConfigItems() []interface{} {
@@ -32,6 +33,10 @@ func (cfg *configuration) ConfigItems() []interface{} {
 }
 
 func (cfg *configuration) setDefault() {
+	if cfg.CloudTerminatationWait <= 0 {
+		cfg.CloudTerminatationWait = 30
+	}
+
 	common.SetDefault(cfg)
 }
 

@@ -267,6 +267,16 @@ func (h *handler) HandleEventPodSubscribe(info *cloudtypes.PodInfo) error {
 	})
 }
 
+func (h *handler) HandleEventPodRelease(podId, cloudType string) error {
+	return h.do(func(bool) error {
+		if err := h.cloud.ReleasePodInstance(podId, cloudType); err != nil {
+			h.log.Error(err)
+		}
+
+		return nil
+	})
+}
+
 func (h *handler) do(f func(bool) error) (err error) {
 	return h.retry(f, sleepTime)
 }
