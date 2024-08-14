@@ -4,6 +4,11 @@ RUN sed -i "s|repo.openeuler.org|mirrors.pku.edu.cn/openeuler|g" /etc/yum.repos.
     dnf install -y golang && \
     go env -w GOPROXY=https://goproxy.cn,direct
 
+ARG USER
+ARG PASS
+RUN echo "machine github.com login $USER password $PASS" > /root/.netrc
+
+RUN go env -w GOPRIVATE=github.com/opensourceways
 
 # build binary
 COPY . /go/src/github.com/opensourceways/xihe-extra-services

@@ -54,7 +54,7 @@ func (j *JSONMap) Scan(src interface{}) error {
 	// string data marshal to JSONMap
 	err := json.Unmarshal([]byte(jsonData), &j)
 	if err != nil {
-		return fmt.Errorf("invalid JSON data: %v", err)
+		return fmt.Errorf("invalid JSON data: %w", err)
 	}
 
 	return nil

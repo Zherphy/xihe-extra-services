@@ -1,7 +1,6 @@
 package watchimpl
 
 import (
-	"fmt"
 	"sync"
 	"time"
 
@@ -39,25 +38,24 @@ func (w *Watcher) watchRequset() {
 
 		for bname := range w.handles {
 			w.wg.Add(1)
+
 			go w.work(bname, now.Add(-time.Duration(w.cfg.Time.ScanTime)*time.Second).Unix())
 		}
 
 	}
 }
 
-func (w *Watcher) work(bname string, time int64) (err error) {
+func (w *Watcher) work(bname string, time int64) {
 	defer w.wg.Done()
 
 	if v, ok := w.handles[bname]; !ok {
-		return fmt.Errorf("internal error, cannot found the bigmodel name: %s", bname)
+		logrus.Errorf("internal error, cannot found the bigmodel name: %s", bname)
 	} else {
 		err := v(bname, time)
 		if err != nil {
-			return fmt.Errorf("internal error, cannot run handle function: %s", err.Error())
+			logrus.Errorf("internal error, cannot run handle function: %s", err.Error())
 		}
 	}
-
-	return nil
 }
 
 func (w *Watcher) Run() {

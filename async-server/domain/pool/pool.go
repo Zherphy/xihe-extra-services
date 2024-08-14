@@ -2,6 +2,7 @@ package pool
 
 import (
 	"github.com/opensourceways/xihe-extra-services/async-server/domain/repository"
+	"github.com/sirupsen/logrus"
 )
 
 type TaskList []func()
@@ -17,7 +18,9 @@ func (r *TaskList) InitTaskList(reqs []repository.WuKongTask, f func(*repository
 	// build new function with new address
 	funcBuild := func(i int) func() {
 		return func() {
-			f(&reqs[i])
+			if err := f(&reqs[i]); err != nil {
+				logrus.Errorf("Error processing task %d: %v", i, err)
+			}
 		}
 	}
 
@@ -32,7 +35,9 @@ func (r *TaskList) InitTaskListForWuKong4Img(reqs []repository.WuKongTask, f fun
 	// build new function with new address
 	funcBuild := func(i int) func() {
 		return func() {
-			f(&reqs[i])
+			if err := f(&reqs[i]); err != nil {
+				logrus.Errorf("Error processing task %d: %v", i, err)
+			}
 		}
 	}
 

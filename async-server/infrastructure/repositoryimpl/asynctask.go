@@ -30,7 +30,7 @@ func (impl *asyncTaskRepoImpl) GetNewTask(taskType string, time int64) (
 
 	d = make([]repository.WuKongTask, len(twukong))
 	for i := range twukong {
-		twukong[i].toWuKongTask(&d[i])
+		err = twukong[i].toWuKongTask(&d[i])
 	}
 
 	return
@@ -56,7 +56,9 @@ func (impl *asyncTaskRepoImpl) InsertTask(req *domain.WuKongRequest) error {
 	return impl.cli.Create(v)
 }
 
-func (impl *asyncTaskRepoImpl) GetWaitingTaskRank(user types.Account, t commondomain.Time, taskType []string) (r int, err error) {
+func (impl *asyncTaskRepoImpl) GetWaitingTaskRank(user types.Account, t commondomain.Time,
+	taskType []string) (r int, err error,
+) {
 	var twukong []TAsyncTask
 
 	// 1. get all task before t
@@ -104,7 +106,9 @@ func (impl *asyncTaskRepoImpl) GetWaitingTaskRank(user types.Account, t commondo
 	return f2(twukong), nil
 }
 
-func (impl *asyncTaskRepoImpl) GetLastFinishedTask(user types.Account, taskType []string) (resp repository.WuKongResp, err error) {
+func (impl *asyncTaskRepoImpl) GetLastFinishedTask(user types.Account, taskType []string) (
+	resp repository.WuKongResp, err error,
+) {
 	var twukong TAsyncTask
 
 	filter := map[string]interface{}{

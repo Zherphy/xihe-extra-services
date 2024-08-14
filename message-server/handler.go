@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -302,11 +301,5 @@ func (h *handler) retry(f func(bool) error, interval time.Duration) (err error) 
 }
 
 func isResourceNotExists(err error) bool {
-	_, ok := err.(repository.ErrorResourceNotExists)
-
-	return ok
-}
-
-func (h *handler) errMaxRetry(err error) error {
-	return fmt.Errorf("exceed max retry num, last err:%v", err)
+	return errors.As(err, &repository.ErrorResourceNotExists{})
 }

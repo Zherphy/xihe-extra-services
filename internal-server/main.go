@@ -159,13 +159,29 @@ func main() {
 	// server
 	s := server.NewServer()
 
-	s.RegisterFinetuneServer(finetuneServer{finetuneService})
-	s.RegisterTrainingServer(trainingServer{train})
-	s.RegisterCompetitionServer(competitionServer{competitionService})
-	s.RegisterAICCFinetuneServer(aiccFinetuneServer{aiccfinetuneService})
+	if err := s.RegisterFinetuneServer(finetuneServer{finetuneService}); err != nil {
+		log.Fatalf("register FinetuneServer failed, err: %s", err.Error())
+	}
 
-	s.RegisterInferenceServer(inferenceServer{inferenceService})
-	s.RegisterCloudServer(cloudServer{cloudService})
+	if err := s.RegisterTrainingServer(trainingServer{train}); err != nil {
+		log.Fatalf("register TrainingServer failed, err: %s", err.Error())
+	}
+
+	if err := s.RegisterCompetitionServer(competitionServer{competitionService}); err != nil {
+		log.Fatalf("register CompetitionServer failed, err: %s", err.Error())
+	}
+
+	if err := s.RegisterAICCFinetuneServer(aiccFinetuneServer{aiccfinetuneService}); err != nil {
+		log.Fatalf("register AICCFinetuneServer failed, err: %s", err.Error())
+	}
+
+	if err := s.RegisterInferenceServer(inferenceServer{inferenceService}); err != nil {
+		log.Fatalf("register InferenceServer failed, err: %s", err.Error())
+	}
+
+	if err := s.RegisterCloudServer(cloudServer{cloudService}); err != nil {
+		log.Fatalf("register CloudServer failed, err: %s", err.Error())
+	}
 
 	if err := s.Run(strconv.Itoa(o.service.Port)); err != nil {
 		log.Errorf("start server failed, err:%s", err.Error())

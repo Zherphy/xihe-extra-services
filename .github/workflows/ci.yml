@@ -1,22 +1,73 @@
 name: Docker Image CI
 
+
 on:
-  push:
-    branches: [ "main"]
   pull_request:
-    branches: [ "main"]
+    branches: [ '*' ]
+
+env:
+  GOPRIVATE: "github.com/opensourceways"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
-
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: self-ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file message-server/Dockerfile --tag server:$(date +%s)
-    - name: Build the Docker image
-      run: docker build . --file async-server/Dockerfile --tag server:$(date +%s)
-    - name: Build the Docker image
-      run: docker build . --file internal-server/Dockerfile --tag server:$(date +%s)
+    - uses: actions/checkout@v4
+    
+    - name: cleanup
+      run: rm -f ~/.netrc
+
+    - name: Run Gosec Security Scanner
+      uses: securego/gosec@master
+      env:
+        GITHUB_AUTHENTICATION_TOKEN: ${{ secrets.ZYK_PERSONAL_TOKEN }}
+      with:
+        args: ./...
+
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@master
+      env:
+        TOKEN: ${{ secrets.ZYK_PERSONAL_TOKEN }}
+        USER: ${{ secrets.ZYK_USER_NAME }}
+      run: echo "machine github.com login $USER password $TOKEN" > ~/.netrc
+      with:
+        # Require: The version of golangci-lint to use.
+        # When `install-mode` is `binary` (default) the value can be v1.2 or v1.2.3 or `latest` to use the latest version.
+        # When `install-mode` is `goinstall` the value can be v1.2.3, `latest`, or the hash of a commit.
+        version: latest
+        # Optional: golangci-lint command line arguments.
+        #
+        # Note: By default, the `.golangci.yml` file should be at the root of the repository.
+        # The location of the configuration file can be changed by using `--config=`
+        args: -v --config=.golangci.yml --max-same-issues=0 
+
+    - name: cleanup
+      run: rm -f ~/.netrc
+
+    
+    - name: Build the message Docker image 
+      run:  |
+          docker build --file message-server/Dockerfile \
+            --build-arg USER=${{ secrets.ZYK_USER_NAME }} \
+            --build-arg PASS=${{ secrets.ZYK_PERSONAL_TOKEN }} \
+            --tag server:$(date +%s) .
+    
+    - name: Build the async Docker image
+      run:  |
+          docker build . --file async-server/Dockerfile \
+            --tag server:$(date +%s)
+    
+    - name: Build the internal Docker image
+      run:  |
+          docker build --file internal-server/Dockerfile \
+            --build-arg USER=${{ secrets.ZYK_USER_NAME }} \
+            --build-arg PASS=${{ secrets.ZYK_PERSONAL_TOKEN }} \
+            --tag server:$(date +%s) .
+
+    
