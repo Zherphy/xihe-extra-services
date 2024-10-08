@@ -191,7 +191,7 @@ func pointsSubscribesMessage(cfg *configuration, topics *mqTopics) error {
 			topics.User.BioSet,
 			topics.User.AvatarSet,
 			// both add and remove action will send the event
-			// but we only fullfill the MsgNormal
+			// but we only fulfill the MsgNormal
 			// when the action need to be scoring
 			topics.Like,
 			topics.BigModelTopics.BigModelFinished,

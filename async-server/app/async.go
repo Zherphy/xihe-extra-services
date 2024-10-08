@@ -30,7 +30,7 @@ type asyncService struct {
 }
 
 func (s *asyncService) AsyncWuKong(taskType string, time int64) (err error) {
-	// 1. get waiting tasks before oder time
+	// 1. get waiting tasks created after specific time
 	var reqs []repository.WuKongTask
 	if reqs, err = s.repo.GetNewTask(taskType, time); err != nil || len(reqs) == 0 { // TODO config
 		return
@@ -64,7 +64,7 @@ func (s *asyncService) AsyncWuKong(taskType string, time int64) (err error) {
 }
 
 func (s *asyncService) AsyncWuKong4Img(taskType string, time int64) (err error) {
-	// 1. get waiting tasks before oder time
+	// 1. get waiting tasks created after specific time
 	var reqs []repository.WuKongTask
 	if reqs, err = s.repo.GetNewTask(taskType, time); err != nil || len(reqs) == 0 { // TODO config
 		return

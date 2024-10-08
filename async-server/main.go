@@ -105,7 +105,7 @@ func main() {
 	bm := bigmodels.NewBigModelService()
 	publisher := kafka.PublisherAdapter()
 
-	// aysnc.bigmodel.bigmodel
+	// async.bigmodel.bigmodel
 	bigmodel := bigmodelimpl.NewBigModelImpl(
 		bigmodelapp.NewAsyncBigModelService(bm, bmmsgadapter.NewMessageAdapter(
 			&cfg.BigModel.Message, publisher,

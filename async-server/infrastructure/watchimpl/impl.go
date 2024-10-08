@@ -31,7 +31,7 @@ func NewWather(
 	}
 }
 
-func (w *Watcher) watchRequset() {
+func (w *Watcher) watchRequest() {
 	logrus.Debug("start watching request")
 
 	for now := range w.timer.C {
@@ -60,7 +60,7 @@ func (w *Watcher) work(bname string, time int64) {
 
 func (w *Watcher) Run() {
 
-	w.watchRequset()
+	w.watchRequest()
 
 }
 

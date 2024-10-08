@@ -90,7 +90,7 @@ func (impl *asyncTaskRepoImpl) GetWaitingTaskRank(user types.Account, t commondo
 		return 0, nil
 	}
 
-	// 2. caculate rank
+	// 2. calculate rank
 	f2 := func(v []TAsyncTask) int {
 		i := 0
 
